@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { LazyLoadComponent } from "react-lazy-load-image-component";
+// import { LazyLoadComponent } from "react-lazy-load-image-component";
 import styled from "styled-components";
 import sanityClient from "../../client.js";
 import Loader from "../loader/Loader";
@@ -32,7 +32,7 @@ const Portfolio = ({ width, link }) => {
         setImages(res);
         console.log(res)
       });
-  }, []);
+  }, [link]);
 
   if (!Images) {
     return <Loader />;
@@ -56,7 +56,7 @@ const Portfolio = ({ width, link }) => {
                       src={t.image.asset.url}
                       alt={t.title}
                     />
-                    {/* <Title>{t.title}</Title> */}
+                    <Title>{t.title}</Title>
                   </ImageMain>
                 </>
               ))}
@@ -93,14 +93,7 @@ const ImageMain = styled.div`
   flex: 10%;
   cursor: pointer;
 `;
-const LoadMore = styled.div`
-  background-color: black;
-  color: white;
-  font-family: jost;
-  padding: 12px 24px;
-  letter-spacing: 4px;
-  margin: 40px auto;
-`;
+
 const Image = styled.div`
   width: 95%;
   display: flex;
@@ -110,8 +103,6 @@ const Image = styled.div`
   animation: fadeIn;
   transition: 1s ease;
 `;
-const Img = styled.img`
-  width: 100%;
-`;
+
 
 export default Portfolio;
