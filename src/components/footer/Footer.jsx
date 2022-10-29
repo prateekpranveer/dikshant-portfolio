@@ -6,6 +6,7 @@ const Footer = () => {
     <>
       <Main>
         <p>Designed and Developed by @prateekpranveer</p>
+        <p>Contribute as Developer <a href="https://github.com/prateekpranveer/dikshant-portfolio">Fork the Repo</a></p>
       </Main>
     </>
   );
