@@ -55,7 +55,7 @@ const Span = styled.span`
   background-color: black;
   width: 50px;
   height: 2px;
-  transform: rotate(${(props) => (props.props == "right" ? "43" : "-43")}deg);
+  transform: rotate(${(props) => (props.props === "right" ? "43" : "-43")}deg);
 `;
 
 export default MaxImage;

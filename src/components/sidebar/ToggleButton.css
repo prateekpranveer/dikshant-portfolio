@@ -1,0 +1,48 @@
+.menu div {
+  width: 50px;
+  height: 50px;
+  top: 75px;
+  left: 40px;
+  position: fixed;
+  z-index: 3;
+  border-radius: 2px;
+}
+
+@media (max-width: 600px) {
+  .menu div {
+    top: 20px;
+  }
+}
+
+.menu span {
+  transition: 0.2s ease;
+  background: rgb(153, 153, 153);
+  width: 60%;
+  height: 2px;
+  border-radius: 5px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.menu .one {
+  transform: translate(-50%, -12px);
+}
+
+.menu .three {
+  transform: translate(-50%, 10px);
+}
+
+.open .one {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.open .three {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.open .two {
+  width: 0;
+}

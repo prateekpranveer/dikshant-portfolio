@@ -1,47 +1,43 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import Sidebar from "../sidebar/Sidebar";
+import ToggleButton from "../sidebar/ToggleButton";
 
-const Navbar = ({ Link, link, setLink }) => {
-  console.log(link);
+const Navbar = ({ Link, setLink }) => {
+  const [Toggle, setToggle] = useState({
+    sidebar: "-250px",
+    toggle: false,
+  });
+
   return (
     <NavMain>
-      <SidebarToggle>
-        <div>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </SidebarToggle>
+      <ToggleState>
+        <Sidebar link={Link} setLink={setLink} Toggle={Toggle} />
+        <ToggleButton Toggle={Toggle} setToggle={setToggle} />
+      </ToggleState>
       <NavLinks>
-        {Link?.map((t) => (
-          <NavLink onClick={() => setLink(t.name)}>{t.name}</NavLink>
+        {Link?.map((t, id) => (
+          <>
+            <NavLink key={id} onClick={() => setLink(t.name)}>
+              {t.name}
+            </NavLink>
+          </>
         ))}
       </NavLinks>
+      <Brand>DIKSHANT.</Brand>
     </NavMain>
   );
 };
 
-const SidebarToggle = styled.div`
-  div {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    span {
-      width: 30px;
-      height: 2px;
-      background-color: black;
-      border-radius: 2px;
-    }
+const ToggleState = styled.div`
+  @media (min-width: 600px) {
+    display: none;
   }
 `;
-
 const NavMain = styled.div`
   width: 95%;
+  height: 6vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +54,20 @@ const NavLinks = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
+
+const Brand = styled.div`
+  letter-spacing: 4px;
+  font-family: jost;
+  @media (min-width: 600px) {
+    display: none;
+  }
+`;
+
 const NavLink = styled.div`
   cursor: pointer;
 `;

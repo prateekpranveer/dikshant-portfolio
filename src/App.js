@@ -43,7 +43,7 @@ function App() {
   return (
     <AppMain>
       <Brand>DIKSHANT.</Brand>
-      <Navbar Link={Links} link={link} setLink={setLink} />
+      <Navbar Link={Links} setLink={setLink} />
       <Portfolio width={Width} link={link} />
       <Footer></Footer>
     </AppMain>
@@ -64,6 +64,9 @@ const Brand = styled.div`
   font-weight: 300;
   background-color: black;
   color: white;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `
 
 

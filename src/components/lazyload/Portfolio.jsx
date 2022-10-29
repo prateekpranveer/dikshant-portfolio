@@ -5,15 +5,14 @@ import sanityClient from "../../client.js";
 import Loader from "../loader/Loader";
 import MaxImage from "../maxImage/MaxImage";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import 'react-lazy-load-image-component/src/effects/opacity.css';
-
+import "react-lazy-load-image-component/src/effects/opacity.css";
 
 const Portfolio = ({ width, link }) => {
   const [Images, setImages] = useState(null);
-  const [BoldImage, setBoldImage] = useState(null)
+  const [BoldImage, setBoldImage] = useState(null);
   const handleClick = (t) => {
-    setBoldImage(t)
-  }
+    setBoldImage(t);
+  };
   useEffect(() => {
     sanityClient
       .fetch(
@@ -30,9 +29,8 @@ const Portfolio = ({ width, link }) => {
       )
       .then((res) => {
         setImages(res);
-        console.log(res)
       });
-  }, [link]);
+  }, []);
 
   if (!Images) {
     return <Loader />;
@@ -44,15 +42,15 @@ const Portfolio = ({ width, link }) => {
         <>
           <PortfolioMain width={width}>
             <Image>
-              {Images?.filter(cat => cat.category===link).map((t) => (
+              {Images?.filter((cat) => cat.category === link).map((t,id) => (
                 <>
-                  <ImageMain onClick={()=>handleClick(t)}>
+                  <ImageMain key={id} onClick={() => handleClick(t)}>
                     <LazyLoadImage
                       style={{
-                        width: "100%"
+                        width: "100%",
+                        borderRadius: "6px",
                       }}
-                      effect ="opacity"
-                      key={t.image.asset.id}
+                      effect="opacity"
                       src={t.image.asset.url}
                       alt={t.title}
                     />
@@ -65,7 +63,7 @@ const Portfolio = ({ width, link }) => {
         </>
       ) : (
         <>
-          <MaxImage setBoldImage={setBoldImage} Image = {BoldImage}/>
+          <MaxImage setBoldImage={setBoldImage} Image={BoldImage} />
         </>
       )}
     </div>
@@ -80,18 +78,32 @@ const PortfolioMain = styled.div`
 `;
 const Title = styled.div`
   bottom: 0px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
   font-family: jost;
   letter-spacing: 1px;
   padding: 2px 12px;
-  background-color: white;
+  background-color: #0000008b;
+  border-radius: 8px;
+  transition: 0.5s ease;
 `;
 const ImageMain = styled.div`
   width: 200px;
+  position: relative;
   min-width: 200px;
   align-items: center;
   margin: auto;
   flex: 10%;
   cursor: pointer;
+  &:hover ${Title} {
+    opacity: 1;
+  }
 `;
 
 const Image = styled.div`
@@ -103,6 +115,5 @@ const Image = styled.div`
   animation: fadeIn;
   transition: 1s ease;
 `;
-
 
 export default Portfolio;
