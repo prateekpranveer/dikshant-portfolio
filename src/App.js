@@ -26,6 +26,14 @@ const Links = [
     id: 5,
     name: "Scenery"
   },
+  {
+    id: 5,
+    name: "Product"
+  },
+  {
+    id: 5,
+    name: "Contemporary Landscape"
+  },
 ]
 
 function App() {
